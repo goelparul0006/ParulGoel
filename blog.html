@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parul's Blog | Finance & AI</title>
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            color: #334155;
+            overflow-x: hidden;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 1.5rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200">
+    
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 w-full z-40 bg-white/80 backdrop-blur-md shadow-md dark:bg-slate-800/80">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">Back to Portfolio</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-16">
+        
+        <header class="text-center pt-16 mb-12">
+            <h1 class="text-5xl font-extrabold text-indigo-600 dark:text-indigo-400 mb-4">Insights & Articles</h1>
+            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                My thoughts on the intersection of finance, technology, and AI.
+            </p>
+        </header>
+
+        <!-- Blog Post Grid -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Article Card 1 -->
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                <h3 class="font-bold text-2xl text-indigo-600 dark:text-indigo-400 mb-2">The Future of Auditing: AI's Role</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Published: August 23, 2025</p>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                    AI is not here to replace auditors but to empower them. From automating compliance checks to predicting financial anomalies, here's how AI is transforming the audit profession.
+                </p>
+                <a href="#" class="text-indigo-600 hover:underline font-semibold dark:text-indigo-400">Read More &rarr;</a>
+            </div>
+
+            <!-- Article Card 2 -->
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                <h3 class="font-bold text-2xl text-indigo-600 dark:text-indigo-400 mb-2">Navigating the New Tax Regime</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Published: August 15, 2025</p>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                    With recent amendments, understanding the new tax regime is more crucial than ever. This article breaks down the key changes and how they might affect you.
+                </p>
+                <a href="#" class="text-indigo-600 hover:underline font-semibold dark:text-indigo-400">Read More &rarr;</a>
+            </div>
+
+            <!-- Article Card 3 -->
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                <h3 class="font-bold text-2xl text-indigo-600 dark:text-indigo-400 mb-2">Unlocking Business Insights with AI</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Published: August 1, 2025</p>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                    Discover how small businesses can use AI tools to gain a competitive edge by analyzing market trends and consumer behavior without a large data team.
+                </p>
+                <a href="#" class="text-indigo-600 hover:underline font-semibold dark:text-indigo-400">Read More &rarr;</a>
+            </div>
+        </section>
+
+    </main>
+</body>
+</html>
