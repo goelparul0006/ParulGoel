@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Finance Dino</title>
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            color: #334155;
+            overflow-x: hidden;
+        }
+
+        .cta-button {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Game-specific styles */
+        #gameCanvas {
+            border: 2px solid #64748b;
+            background-color: #e2e8f0;
+            cursor: pointer;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 12px;
+        }
+        
+        #messageBox {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200">
+    
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 w-full z-40 bg-white/80 backdrop-blur-md shadow-md dark:bg-slate-800/80">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">Back to Portfolio</a>
+        </div>
+    </nav>
+
+    <!-- Game Container -->
+    <div class="w-full h-screen relative">
+        <canvas id="gameCanvas"></canvas>
+        <!-- Message Box for game status -->
+        <div id="messageBox" class="hidden">
+            <p id="messageText" class="text-xl font-bold mb-4"></p>
+            <button id="restartButton" class="px-6 py-2 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold rounded-full">
+                Restart
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript for the Game -->
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const messageBox = document.getElementById('messageBox');
+        const messageText = document.getElementById('messageText');
+        const restartButton = document.getElementById('restartButton');
+
+        let player, obstacles, coins, score;
+        let isGameOver = false;
+        let scrollSpeed = 5;
+
+        const resizeCanvas = () => {
+            canvas.width = window.innerWidth * 0.8;
+            canvas.height = window.innerHeight * 0.7;
+        };
+
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('load', () => {
+            resizeCanvas();
+            init();
+            update();
+        });
+
+        // Game objects
+        function createPlayer() {
+            return {
+                x: 50,
+                y: canvas.height - 100,
+                width: 40,
+                height: 40,
+                dy: 0,
+                gravity: 0.8,
+                jumpPower: -15,
+                isJumping: false,
+                color: '#10b981'
+            };
+        }
+
+        function createObstacle(x, y, width, height, color) {
+            return { x, y, width, height, color };
+        }
+
+        function createCoin(x, y, radius, color) {
+            return { x, y, radius, color, collected: false };
+        }
+
+        // Initialize game state
+        function init() {
+            player = createPlayer();
+            obstacles = [];
+            coins = [];
+            score = 0;
+            isGameOver = false;
+            messageBox.style.display = 'none';
+            addRandomObject();
+            addRandomObject();
+        }
+
+        // Function to add a new random obstacle or coin
+        function addRandomObject() {
+            const type = Math.random();
+            const lastX = obstacles.length > 0 ? obstacles[obstacles.length - 1].x : canvas.width;
+            const newX = lastX + 300 + Math.random() * 200;
+
+            if (type < 0.5) {
+                // Add an obstacle
+                const height = 50 + Math.random() * 50;
+                obstacles.push(createObstacle(newX, canvas.height - 30 - height, 50, height, '#ef4444'));
+            } else {
+                // Add a coin
+                coins.push(createCoin(newX, canvas.height - 100 - Math.random() * 100, 10, '#fde047'));
+            }
+        }
+
+        // Draw game elements
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw ground
+            ctx.fillStyle = '#9ca3af';
+            ctx.fillRect(0, canvas.height - 30, canvas.width, 30);
+
+            // Draw player
+            ctx.fillStyle = player.color;
+            ctx.fillRect(player.x, player.y, player.width, player.height);
+
+            // Draw obstacles (debt)
+            obstacles.forEach(obstacle => {
+                ctx.fillStyle = obstacle.color;
+                ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+            });
+
+            // Draw coins (profit)
+            coins.forEach(coin => {
+                if (!coin.collected) {
+                    ctx.fillStyle = coin.color;
+                    ctx.beginPath();
+                    ctx.arc(coin.x, coin.y, coin.radius, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            });
+
+            // Draw score
+            ctx.fillStyle = '#334155';
+            ctx.font = '20px Inter';
+            ctx.fillText(`Profit: $${score}`, 20, 30);
+        }
+
+        // Update game state
+        function update() {
+            if (isGameOver) return;
+
+            // Apply gravity
+            player.dy += player.gravity;
+            player.y += player.dy;
+
+            // Check for ground collision
+            if (player.y + player.height > canvas.height - 30) {
+                player.y = canvas.height - 30 - player.height;
+                player.isJumping = false;
+                player.dy = 0;
+            }
+
+            // Move objects and check for collisions
+            obstacles.forEach(obstacle => {
+                obstacle.x -= scrollSpeed;
+                if (
+                    player.x < obstacle.x + obstacle.width &&
+                    player.x + player.width > obstacle.x &&
+                    player.y < obstacle.y + obstacle.height &&
+                    player.y + player.height > obstacle.y
+                ) {
+                    gameOver(false); // Lose condition
+                }
+            });
+
+            coins.forEach(coin => {
+                coin.x -= scrollSpeed;
+                if (!coin.collected &&
+                    player.x < coin.x + coin.radius &&
+                    player.x + player.width > coin.x - coin.radius &&
+                    player.y < coin.y + coin.radius &&
+                    player.y + player.height > coin.y - coin.radius) {
+                    coin.collected = true;
+                    score += 100;
+                    if (score >= 1000) {
+                        gameOver(true); // Win condition
+                    }
+                }
+            });
+
+            // Filter out objects that have moved off-screen
+            obstacles = obstacles.filter(obstacle => obstacle.x + obstacle.width > 0);
+            coins = coins.filter(coin => coin.x + coin.radius > 0 || coin.collected);
+
+            // Add new objects if the last one is close to the screen edge
+            const lastObjectX = Math.max(
+                (obstacles.length > 0 ? obstacles[obstacles.length - 1].x : 0),
+                (coins.length > 0 ? coins[coins.length - 1].x : 0)
+            );
+            if (lastObjectX < canvas.width * 0.7) {
+                addRandomObject();
+            }
+
+            draw();
+            requestAnimationFrame(update);
+        }
+
+        // Handle game over
+        function gameOver(win) {
+            isGameOver = true;
+            messageBox.style.display = 'block';
+            if (win) {
+                messageText.textContent = `You've achieved Financial Freedom! Final Profit: $${score}`;
+            } else {
+                messageText.textContent = `You hit a Debt Block! Game Over. Final Profit: $${score}`;
+            }
+        }
+
+        // Player jump action
+        const jump = () => {
+            if (!player.isJumping && !isGameOver) {
+                player.dy = player.jumpPower;
+                player.isJumping = true;
+            }
+        };
+
+        // Event listeners for keyboard and touch
+        document.addEventListener('keydown', e => {
+            if (e.code === 'Space' || e.code === 'ArrowUp') {
+                jump();
+            }
+        });
+
+        canvas.addEventListener('click', jump);
+        canvas.addEventListener('touchstart', jump);
+
+        restartButton.addEventListener('click', () => {
+            init();
+            update();
+        });
+    </script>
+</body>
+</html>
