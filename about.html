@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Parul Goel</title>
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            color: #334155;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 1.5rem;
+        }
+        
+        @media (min-width: 640px) {
+            .container {
+                padding: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200">
+    
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 w-full z-40 bg-white/80 backdrop-blur-md shadow-md dark:bg-slate-800/80">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">Home</a>
+            <div class="space-x-4 flex">
+                <a href="#" class="text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">About</a>
+                <a href="products.html" class="text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">Products</a>
+                <a href="blog.html" class="text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">Blog</a>
+                <a href="contact.html" class="text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-16">
+
+        <!-- About Me Section -->
+        <section id="about" class="pt-24 mb-16 bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-xl">
+            <h1 class="text-3xl font-bold mb-4 border-b-2 border-indigo-500 pb-2">About Me</h1>
+            <p class="text-lg">
+                As a CA Finalist, I have a deep understanding of financial principles, taxation, and auditing. My passion for technology, however, led me to explore the transformative power of AI and web development. I believe that by combining these two worlds, we can create innovative solutions that not only automate tedious tasks but also provide actionable insights, leading to better decision-making and professional growth.
+            </p>
+            <div class="mt-4 text-center text-lg font-medium">
+                <a href="https://www.linkedin.com/in/the-parul-goel" target="_blank" class="text-indigo-600 hover:underline dark:text-indigo-400">Connect with me on LinkedIn</a> | 
+                <a href="mailto:goelparul0006@gmail.com" class="text-indigo-600 hover:underline dark:text-indigo-400">Email me</a>
+            </div>
+        </section>
+
+    </main>
+</body>
+</html>
