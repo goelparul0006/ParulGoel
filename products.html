@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parul Goel | Products & Projects</title>
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            color: #334155;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 1.5rem;
+        }
+        
+        .product-tile:hover .icon-animation {
+            animation: bounce 0.6s infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-5px); }
+        }
+
+        @media (min-width: 640px) {
+            .container {
+                padding: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200">
+    
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 w-full z-40 bg-white/80 backdrop-blur-md shadow-md dark:bg-slate-800/80">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">Home</a>
+            <div class="space-x-4 flex">
+                <a href="about.html" class="text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">About</a>
+                <a href="#" class="text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">Products</a>
+                <a href="blog.html" class="text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">Blog</a>
+                <a href="contact.html" class="text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-16">
+
+        <!-- Products/Projects Section -->
+        <section class="pt-24 mb-16 bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-xl">
+            <h1 class="text-3xl font-bold mb-4 border-b-2 border-indigo-500 pb-2">Products & Projects</h1>
+            <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+                Explore the AI-powered utilities, dashboards, and creative projects I have built.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Product Tile 1 -->
+                <a href="financial-analyzer.html" class="group product-tile block bg-slate-50 dark:bg-slate-700 p-6 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="font-semibold text-2xl text-indigo-600 group-hover:text-indigo-500 mb-2 transition-colors">Financial Statement Analyzer</h3>
+                    <p class="text-gray-600 dark:text-gray-300">An AI tool that automates the analysis of financial statements and flags key trends.</p>
+                </a>
+                <!-- Product Tile 2 -->
+                <a href="regulatory-compliance-tracker.html" class="group product-tile block bg-slate-50 dark:bg-slate-700 p-6 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="font-semibold text-2xl text-indigo-600 group-hover:text-indigo-500 mb-2 transition-colors">Regulatory Compliance Tracker</h3>
+                    <p class="text-gray-600 dark:text-gray-300">A real-time assistant that provides instant, simplified updates on tax and regulatory changes.</p>
+                </a>
+                <!-- Product Tile 3 (The Game) -->
+                <a href="finance-dino.html" class="group product-tile block bg-slate-50 dark:bg-slate-700 p-6 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="font-semibold text-2xl text-indigo-600 group-hover:text-indigo-500 mb-2 transition-colors">The Finance Dino</h3>
+                    <p class="text-600 dark:text-gray-300">An interactive game to engage visitors and demonstrate web development skills with a finance theme.</p>
+                </a>
+                <!-- Product Tile 4 (New) -->
+                <a href="ai-search-engine.html" class="group product-tile block bg-slate-50 dark:bg-slate-700 p-6 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="font-semibold text-2xl text-indigo-600 group-hover:text-indigo-500 mb-2 transition-colors">AI Search Engine</h3>
+                    <p class="text-gray-600 dark:text-gray-300">A powerful search engine to find financial and business information quickly.</p>
+                </a>
+            </div>
+        </section>
+        
+    </main>
+</body>
+</html>
