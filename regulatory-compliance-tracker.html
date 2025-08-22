@@ -97,78 +97,80 @@
     </main>
 
     <script>
-        const updatesContainer = document.getElementById('updatesResult');
-        const updatesMessage = document.getElementById('updatesMessage');
-        const updatesContent = document.getElementById('updatesContent');
-        const topicButtons = document.querySelectorAll('.topic-button');
+        document.addEventListener('DOMContentLoaded', () => {
+            const updatesContainer = document.getElementById('updatesResult');
+            const updatesMessage = document.getElementById('updatesMessage');
+            const updatesContent = document.getElementById('updatesContent');
+            const topicButtons = document.querySelectorAll('.topic-button');
 
-        const mockUpdates = {
-            "GST": [
-                {
-                    title: "GST Council Approves Two-Slab System",
-                    summary: "The GST Council has cleared a proposal to simplify the tax structure to two main slabs of 5% and 18%, with a special 40% levy on sin goods. This is expected to significantly reduce compliance complexities."
-                },
-                {
-                    title: "Mandatory E-invoicing for Small Businesses",
-                    summary: "The government has extended the e-invoicing mandate to businesses with a turnover above ₹5 Crore, effective October 1, 2025, to improve traceability and tax governance."
-                }
-            ],
-            "Income Tax": [
-                {
-                    title: "New Tax Regime Made Default",
-                    summary: "The new income tax regime is now the default option for all taxpayers. However, individuals retain the choice to switch to the old regime if it's more beneficial for them."
-                },
-                {
-                    title: "Revised Rebate Under Section 87A",
-                    summary: "The tax rebate under Section 87A has been increased, providing more tax savings for individuals with a taxable income below ₹7.5 Lakh in the new tax regime."
-                }
-            ],
-            "Corporate Law": [
-                {
-                    title: "Simplified Company Formation Process",
-                    summary: "The Ministry of Corporate Affairs has introduced a new simplified form for company registration, reducing the time and documentation required to start a new business."
-                }
-            ],
-            "International": [
-                {
-                    title: "OECD Global Minimum Tax (Pillar Two)",
-                    summary: "India is progressing towards implementing the OECD's Pillar Two rules, which mandate a 15% global minimum tax on multinational corporations. This will impact cross-border financial planning."
-                }
-            ]
-        };
-
-        topicButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const topic = button.dataset.topic;
-                updatesMessage.textContent = 'Fetching updates...';
-                updatesContent.classList.add('hidden');
-
-                setTimeout(() => {
-                    const updates = mockUpdates[topic];
-                    if (updates && updates.length > 0) {
-                        displayUpdates(updates);
-                    } else {
-                        updatesMessage.textContent = 'No recent updates available for this topic.';
-                        updatesContent.classList.remove('hidden');
+            const mockUpdates = {
+                "GST": [
+                    {
+                        title: "GST Council Approves Two-Slab System",
+                        summary: "The GST Council has cleared a proposal to simplify the tax structure to two main slabs of 5% and 18%, with a special 40% levy on sin goods. This is expected to significantly reduce compliance complexities."
+                    },
+                    {
+                        title: "Mandatory E-invoicing for Small Businesses",
+                        summary: "The government has extended the e-invoicing mandate to businesses with a turnover above ₹5 Crore, effective October 1, 2025, to improve traceability and tax governance."
                     }
-                }, 1000); // Simulate network delay
-            });
-        });
+                ],
+                "Income Tax": [
+                    {
+                        title: "New Tax Regime Made Default",
+                        summary: "The new income tax regime is now the default option for all taxpayers. However, individuals retain the choice to switch to the old regime if it's more beneficial for them."
+                    },
+                    {
+                        title: "Revised Rebate Under Section 87A",
+                        summary: "The tax rebate under Section 87A has been increased, providing more tax savings for individuals with a taxable income below ₹7.5 Lakh in the new tax regime."
+                    }
+                ],
+                "Corporate Law": [
+                    {
+                        title: "Simplified Company Formation Process",
+                        summary: "The Ministry of Corporate Affairs has introduced a new simplified form for company registration, reducing the time and documentation required to start a new business."
+                    }
+                ],
+                "International": [
+                    {
+                        title: "OECD Global Minimum Tax (Pillar Two)",
+                        summary: "India is progressing towards implementing the OECD's Pillar Two rules, which mandate a 15% global minimum tax on multinational corporations. This will impact cross-border financial planning."
+                    }
+                ]
+            };
 
-        function displayUpdates(updates) {
-            updatesContent.innerHTML = '';
-            updates.forEach(update => {
-                const updateDiv = document.createElement('div');
-                updateDiv.className = 'p-4 rounded-lg bg-gray-100 dark:bg-slate-800 space-y-2';
-                updateDiv.innerHTML = `
-                    <h4 class="font-semibold text-lg text-indigo-600 dark:text-indigo-400">${update.title}</h4>
-                    <p>${update.summary}</p>
-                `;
-                updatesContent.appendChild(updateDiv);
+            topicButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const topic = button.dataset.topic;
+                    updatesMessage.textContent = 'Fetching updates...';
+                    updatesContent.classList.add('hidden');
+
+                    setTimeout(() => {
+                        const updates = mockUpdates[topic];
+                        if (updates && updates.length > 0) {
+                            displayUpdates(updates);
+                        } else {
+                            updatesMessage.textContent = 'No recent updates available for this topic.';
+                            updatesContent.classList.remove('hidden');
+                        }
+                    }, 1000); // Simulate network delay
+                });
             });
-            updatesMessage.textContent = '';
-            updatesContent.classList.remove('hidden');
-        }
+
+            function displayUpdates(updates) {
+                updatesContent.innerHTML = '';
+                updates.forEach(update => {
+                    const updateDiv = document.createElement('div');
+                    updateDiv.className = 'p-4 rounded-lg bg-gray-100 dark:bg-slate-800 space-y-2';
+                    updateDiv.innerHTML = `
+                        <h4 class="font-semibold text-lg text-indigo-600 dark:text-indigo-400">${update.title}</h4>
+                        <p>${update.summary}</p>
+                    `;
+                    updatesContent.appendChild(updateDiv);
+                });
+                updatesMessage.textContent = '';
+                updatesContent.classList.remove('hidden');
+            }
+        });
     </script>
 </body>
 </html>
