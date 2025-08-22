@@ -18,8 +18,16 @@
             overflow-x: hidden;
         }
 
-        .gradient-bg {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 1.5rem;
+        }
+        
+        @media (min-width: 640px) {
+            .container {
+                padding: 2.5rem;
+            }
         }
     </style>
 </head>
@@ -28,10 +36,12 @@
     <!-- Navigation Bar -->
     <nav class="fixed top-0 left-0 w-full z-40 bg-white/80 backdrop-blur-md shadow-md dark:bg-slate-800/80">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">Back to Portfolio</a>
+            <a href="index.html" class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">Home</a>
             <div class="space-x-4 flex">
-                <a href="#analyzer" class="text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">Analyzer</a>
-                <a href="#contact" class="text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">Contact</a>
+                <a href="about.html" class="text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">About</a>
+                <a href="products.html" class="text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">Products</a>
+                <a href="blog.html" class="text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">Blog</a>
+                <a href="contact.html" class="text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">Contact</a>
             </div>
         </div>
     </nav>
@@ -69,7 +79,7 @@
             <p class="text-lg mb-6">
                 I'm always open to new ideas and collaborations. If you're a professional looking to use AI, a developer with a project idea, or just want to chat about the future of finance, get in touch!
             </p>
-            <form class="space-y-4">
+            <form action="mailto:goelparul0006@gmail.com" method="post" enctype="text/plain" class="space-y-4">
                 <div>
                     <label for="name" class="block text-gray-700 dark:text-gray-300">Name</label>
                     <input type="text" id="name" name="name" class="mt-1 block w-full rounded-md border-gray-300 dark:border-slate-600 bg-gray-50 dark:bg-slate-700 p-2 text-slate-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500">
@@ -95,64 +105,66 @@
     </main>
 
     <script>
-        const analyzeButton = document.getElementById('analyzeButton');
-        const uploadInput = document.getElementById('uploadInput');
-        const statusMessage = document.getElementById('statusMessage');
-        const reportContent = document.getElementById('reportContent');
+        document.addEventListener('DOMContentLoaded', () => {
+            const analyzeButton = document.getElementById('analyzeButton');
+            const uploadInput = document.getElementById('uploadInput');
+            const statusMessage = document.getElementById('statusMessage');
+            const reportContent = document.getElementById('reportContent');
 
-        analyzeButton.addEventListener('click', () => {
-            const file = uploadInput.files[0];
-            if (!file) {
-                statusMessage.textContent = 'Please select a file to analyze.';
-                return;
+            analyzeButton.addEventListener('click', () => {
+                const file = uploadInput.files[0];
+                if (!file) {
+                    statusMessage.textContent = 'Please select a file to analyze.';
+                    return;
+                }
+
+                statusMessage.textContent = `Analyzing ${file.name}...`;
+                reportContent.classList.add('hidden');
+
+                // Simulate AI analysis process
+                setTimeout(() => {
+                    const mockAnalysis = {
+                        title: "Financial Analysis Report: Q3 2025",
+                        summary: "The company demonstrated strong revenue growth in Q3, driven by a 15% increase in core product sales. However, operating expenses rose, slightly compressing profit margins. A significant increase in accounts receivable suggests potential liquidity issues if not managed effectively.",
+                        highlights: [
+                            "Revenue grew by 15% year-over-year.",
+                            "Operating expenses increased by 10%, impacting net profit margin.",
+                            "Current Ratio (1.2) indicates healthy short-term liquidity.",
+                            "Debt-to-Equity Ratio remains stable at 0.4.",
+                            "Accounts Receivable turnover slowed, requiring further investigation."
+                        ],
+                        recommendations: "Focus on optimizing operational costs and strengthening accounts receivable collection processes to improve cash flow and sustain growth."
+                    };
+
+                    displayAnalysis(mockAnalysis);
+
+                }, 2000); // Simulate a 2-second API call
+            });
+
+            function displayAnalysis(analysis) {
+                reportContent.innerHTML = `
+                    <h3 class="text-2xl font-bold border-b-2 border-slate-300 dark:border-slate-600 pb-2">${analysis.title}</h3>
+                    <div class="space-y-4">
+                        <div class="p-4 rounded-lg bg-gray-100 dark:bg-slate-800">
+                            <h4 class="font-semibold text-lg text-indigo-600 dark:text-indigo-400">Executive Summary</h4>
+                            <p>${analysis.summary}</p>
+                        </div>
+                        <div class="p-4 rounded-lg bg-gray-100 dark:bg-slate-800">
+                            <h4 class="font-semibold text-lg text-indigo-600 dark:text-indigo-400">Key Highlights</h4>
+                            <ul class="list-disc list-inside ml-4">
+                                ${analysis.highlights.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div class="p-4 rounded-lg bg-gray-100 dark:bg-slate-800">
+                            <h4 class="font-semibold text-lg text-indigo-600 dark:text-indigo-400">Recommendations</h4>
+                            <p>${analysis.recommendations}</p>
+                        </div>
+                    </div>
+                `;
+                statusMessage.textContent = '';
+                reportContent.classList.remove('hidden');
             }
-
-            statusMessage.textContent = `Analyzing ${file.name}...`;
-            reportContent.classList.add('hidden');
-
-            // Simulate AI analysis process
-            setTimeout(() => {
-                const mockAnalysis = {
-                    title: "Financial Analysis Report: Q3 2025",
-                    summary: "The company demonstrated strong revenue growth in Q3, driven by a 15% increase in core product sales. However, operating expenses rose, slightly compressing profit margins. A significant increase in accounts receivable suggests potential liquidity issues if not managed effectively.",
-                    highlights: [
-                        "Revenue grew by 15% year-over-year.",
-                        "Operating expenses increased by 10%, impacting net profit margin.",
-                        "Current Ratio (1.2) indicates healthy short-term liquidity.",
-                        "Debt-to-Equity Ratio remains stable at 0.4.",
-                        "Accounts Receivable turnover slowed, requiring further investigation."
-                    ],
-                    recommendations: "Focus on optimizing operational costs and strengthening accounts receivable collection processes to improve cash flow and sustain growth."
-                };
-
-                displayAnalysis(mockAnalysis);
-
-            }, 2000); // Simulate a 2-second API call
         });
-
-        function displayAnalysis(analysis) {
-            reportContent.innerHTML = `
-                <h3 class="text-2xl font-bold border-b-2 border-slate-300 dark:border-slate-600 pb-2">${analysis.title}</h3>
-                <div class="space-y-4">
-                    <div class="p-4 rounded-lg bg-gray-100 dark:bg-slate-800">
-                        <h4 class="font-semibold text-lg text-indigo-600 dark:text-indigo-400">Executive Summary</h4>
-                        <p>${analysis.summary}</p>
-                    </div>
-                    <div class="p-4 rounded-lg bg-gray-100 dark:bg-slate-800">
-                        <h4 class="font-semibold text-lg text-indigo-600 dark:text-indigo-400">Key Highlights</h4>
-                        <ul class="list-disc list-inside ml-4">
-                            ${analysis.highlights.map(item => `<li>${item}</li>`).join('')}
-                        </ul>
-                    </div>
-                    <div class="p-4 rounded-lg bg-gray-100 dark:bg-slate-800">
-                        <h4 class="font-semibold text-lg text-indigo-600 dark:text-indigo-400">Recommendations</h4>
-                        <p>${analysis.recommendations}</p>
-                    </div>
-                </div>
-            `;
-            statusMessage.textContent = '';
-            reportContent.classList.remove('hidden');
-        }
     </script>
 </body>
 </html>
