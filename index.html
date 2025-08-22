@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parul Goel | Finance & AI</title>
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            color: #334155;
+            overflow-x: hidden;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+
+        .shine-effect {
+            background: linear-gradient(90deg, #334155, #334155, #f0f4f8, #334155, #334155);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shine 5s linear infinite;
+        }
+
+        @keyframes shine {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .cta-button {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Game-specific styles */
+        #gameCanvas {
+            border: 2px solid #64748b;
+            background-color: #e2e8f0;
+            cursor: pointer;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 12px;
+        }
+
+        #gameContainer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.95);
+            z-index: 50;
+        }
+        
+        #messageBox {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            z-index: 100;
+        }
+
+        /* Responsive styling for the main container and content sections */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 1.5rem;
+        }
+
+        .section-header {
+            padding-top: 100px;
+            margin-top: -100px;
+        }
+        
+        .product-tile:hover .icon-animation {
+            animation: bounce 0.6s infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-5px); }
+        }
+
+        @media (min-width: 640px) {
+            .container {
+                padding: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 w-full z-40 bg-white/80 backdrop-blur-md shadow-md dark:bg-slate-800/80">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">Parul Goel</a>
+            <div class="space-x-4 flex">
+                <a href="#about" class="text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">About</a>
+                <a href="#products" class="text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">Products</a>
+                <a href="#search" class="text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">AI Search</a>
+                <a href="blog.html" class="text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">Blog</a>
+                <a href="#contact" class="text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="gradient-bg text-white py-24 sm:py-32 text-center shadow-lg rounded-b-[3rem]">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-4">Parul Goel</h1>
+            <p class="text-xl sm:text-2xl font-light mb-6 shine-effect">
+                CA Finalist | AI Automation & Web Solutions
+            </p>
+            <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+                Building a future where finance and AI work together to empower professionals.
+            </p>
+            <a href="finance-dino.html" class="cta-button mt-8 inline-block px-8 py-3 bg-indigo-500 hover:bg-indigo-600 text-white font-bold rounded-full shadow-lg transition-transform transform hover:scale-105">
+                Play the Finance Dino
+            </a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-16">
+
+        <!-- About Me Section -->
+        <section id="about" class="section-header mb-16 bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-xl">
+            <h2 class="text-3xl font-bold mb-4 border-b-2 border-indigo-500 pb-2">About Me</h2>
+            <p class="text-lg">
+                As a CA Finalist, I have a deep understanding of financial principles, taxation, and auditing. My passion for technology, however, led me to explore the transformative power of AI and web development. I believe that by combining these two worlds, we can create innovative solutions that not only automate tedious tasks but also provide actionable insights, leading to better decision-making and professional growth.
+            </p>
+            <div class="mt-4 text-center text-lg font-medium">
+                <a href="https://www.linkedin.com/in/the-parul-goel" target="_blank" class="text-indigo-600 hover:underline dark:text-indigo-400">Connect with me on LinkedIn</a> | 
+                <a href="mailto:goelparul0006@gmail.com" class="text-indigo-600 hover:underline dark:text-indigo-400">Email me</a>
+            </div>
+        </section>
+
+        <!-- Products/Projects Section -->
+        <section id="products" class="section-header mb-16 bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-xl">
+            <h2 class="text-3xl font-bold mb-4 border-b-2 border-indigo-500 pb-2">Products & Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Product Tile 1 -->
+                <a href="financial-analyzer.html" class="group product-tile block bg-slate-50 dark:bg-slate-700 p-6 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="font-semibold text-2xl text-indigo-600 group-hover:text-indigo-500 mb-2 transition-colors">Financial Statement Analyzer</h3>
+                    <p class="text-gray-600 dark:text-gray-300">An AI tool that automates the analysis of financial statements and flags key trends.</p>
+                </a>
+                <!-- Product Tile 2 -->
+                <a href="compliance-tracker.html" class="group product-tile block bg-slate-50 dark:bg-slate-700 p-6 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="font-semibold text-2xl text-indigo-600 group-hover:text-indigo-500 mb-2 transition-colors">Regulatory Compliance Tracker</h3>
+                    <p class="text-gray-600 dark:text-gray-300">A real-time assistant that provides instant, simplified updates on tax and regulatory changes.</p>
+                </a>
+                <!-- Product Tile 3 (The Game) -->
+                <a href="finance-dino.html" class="group product-tile block bg-slate-50 dark:bg-slate-700 p-6 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="font-semibold text-2xl text-indigo-600 group-hover:text-indigo-500 mb-2 transition-colors">The Finance Dino</h3>
+                    <p class="text-600 dark:text-gray-300">An interactive game to engage visitors and demonstrate web development skills with a finance theme.</p>
+                </a>
+                <!-- Product Tile 4 (New) -->
+                <a href="#search" class="group product-tile block bg-slate-50 dark:bg-slate-700 p-6 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="font-semibold text-2xl text-indigo-600 group-hover:text-indigo-500 mb-2 transition-colors">AI Search Engine</h3>
+                    <p class="text-gray-600 dark:text-gray-300">A powerful search engine to find financial and business information quickly.</p>
+                </a>
+                <!-- Blog Tile (New) -->
+                <a href="blog.html" class="group product-tile block bg-slate-50 dark:bg-slate-700 p-6 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="font-semibold text-2xl text-indigo-600 group-hover:text-indigo-500 mb-2 transition-colors">Blog & Insights</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Articles and perspectives on the future of finance, AI, and professional growth.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- AI Search Engine Section -->
+        <section id="search" class="section-header mb-16 bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-xl">
+            <h2 class="text-3xl font-bold mb-4 border-b-2 border-indigo-500 pb-2">AI-Powered Search Engine</h2>
+            <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 mb-8">
+                <input type="text" id="searchInput" placeholder="Search for financial news, data, or concepts..." class="flex-grow w-full md:w-auto rounded-md border-gray-300 dark:border-slate-600 bg-gray-50 dark:bg-slate-700 p-3 text-slate-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500">
+                <button id="searchButton" class="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 transition-colors w-full md:w-auto">
+                    Search
+                </button>
+            </div>
+            <div id="searchResults" class="space-y-6">
+                <!-- Search results will be dynamically added here -->
+            </div>
+        </section>
+
+        <!-- Contact & Collaborate Section -->
+        <section id="contact" class="section-header bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-xl">
+            <h2 class="text-3xl font-bold mb-4 border-b-2 border-indigo-500 pb-2">Contact & Collaborate</h2>
+            <p class="text-lg mb-6">
+                I'm always open to new ideas and collaborations. If you're a professional looking to use AI, a developer with a project idea, or just want to chat about the future of finance, get in touch!
+            </p>
+            <!-- Updated contact form with mailto link -->
+            <form action="mailto:goelparul0006@gmail.com" method="post" enctype="text/plain" class="space-y-4">
+                <div>
+                    <label for="name" class="block text-gray-700 dark:text-gray-300">Name</label>
+                    <input type="text" id="name" name="name" class="mt-1 block w-full rounded-md border-gray-300 dark:border-slate-600 bg-gray-50 dark:bg-slate-700 p-2 text-slate-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500">
+                </div>
+                <div>
+                    <label for="email" class="block text-gray-700 dark:text-gray-300">Email</label>
+                    <input type="email" id="email" name="email" class="mt-1 block w-full rounded-md border-gray-300 dark:border-slate-600 bg-gray-50 dark:bg-slate-700 p-2 text-slate-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500">
+                </div>
+                <div>
+                    <label for="message" class="block text-gray-700 dark:text-gray-300">Message</label>
+                    <textarea id="message" name="message" rows="4" class="mt-1 block w-full rounded-md border-gray-300 dark:border-slate-600 bg-gray-50 dark:bg-slate-700 p-2 text-slate-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500"></textarea>
+                </div>
+                <button type="submit" class="w-full px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 transition-colors">
+                    Send Message
+                </button>
+            </form>
+            <div class="mt-4 text-center text-lg font-medium">
+                <a href="https://www.linkedin.com/in/the-parul-goel" target="_blank" class="text-indigo-600 hover:underline dark:text-indigo-400">Connect on LinkedIn</a> | 
+                <a href="mailto:goelparul0006@gmail.com" class="text-indigo-600 hover:underline dark:text-indigo-400">Email</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- JavaScript for the Game and Search Engine -->
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+        const searchResults = document.getElementById('searchResults');
+
+        // Search Engine Logic
+        searchButton.addEventListener('click', () => {
+            const query = searchInput.value;
+            if (query.trim() === '') {
+                searchResults.innerHTML = '<p class="text-red-500">Please enter a search query.</p>';
+                return;
+            }
+
+            searchResults.innerHTML = '<p class="text-gray-500">Searching...</p>';
+            
+            // Send search query to the tool code
+            parent.postMessage({ type: 'search', query: query }, '*');
+        });
+
+        // Listen for search results from the tool code
+        window.addEventListener('message', (event) => {
+            if (event.data.type === 'searchResults') {
+                displayResults(event.data.results);
+            }
+        });
+
+        function displayResults(results) {
+            searchResults.innerHTML = '';
+            if (!results || results.length === 0) {
+                searchResults.innerHTML = '<p class="text-gray-500">No results found.</p>';
+                return;
+            }
+
+            results.forEach(result => {
+                const resultDiv = document.createElement('div');
+                resultDiv.className = 'p-4 rounded-xl shadow-md bg-slate-50 dark:bg-slate-700';
+                resultDiv.innerHTML = `
+                    <h4 class="font-bold text-lg text-indigo-600 dark:text-indigo-400 mb-1"><a href="${result.url}" target="_blank" class="hover:underline">${result.title}</a></h4>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">${result.snippet}</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">${result.url}</p>
+                `;
+                searchResults.appendChild(resultDiv);
+            });
+        }
+    </script>
+</body>
+</html>
